@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Search Simulator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .nav-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .search-bar {
+            width: 50%;
+            max-width: 600px;
+            padding: 10px;
+            border-radius: 25px;
+            border: 1px solid #ddd;
+            font-size: 18px;
+        }
+
+        .search-buttons {
+            margin-top: 15px;
+        }
+
+        .search-button, .lucky-button, .advanced-button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-button, .lucky-button {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .advanced-button {
+            background-color: #4285F4;
+            color: #fff;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Links -->
+<div class="nav-links">
+    <a onclick="showPage('googleSearch')">Google Search</a>
+    <a onclick="showPage('imageSearch')">Image Search</a>
+    <a onclick="showPage('advancedSearch')">Advanced Search</a>
+</div>
+
+<!-- Google Search Page -->
+<div id="googleSearch" class="search-container">
+    <form action="https://www.google.com/search" method="get">
+        <input type="text" name="q" class="search-bar" placeholder="Search Google">
+        <div class="search-buttons">
+            <button type="submit" class="search-button">Google Search</button>
+            <button type="submit" formaction="https://www.google.com/search?btnI=I" class="lucky-button">I'm Feeling Lucky</button>
+        </div>
+    </form>
+</div>
+
+<!-- Google Image Search Page -->
+<div id="imageSearch" class="search-container hidden">
+    <form action="https://www.google.com/search" method="get">
+        <input type="hidden" name="tbm" value="isch">
+        <input type="text" name="q" class="search-bar" placeholder="Search Google Images">
+        <div class="search-buttons">
+            <button type="submit" class="search-button">Image Search</button>
+        </div>
+    </form>
+</div>
+
+<!-- Google Advanced Search Page -->
+<div id="advancedSearch" class="search-container hidden">
+    <form action="https://www.google.com/search" method="get">
+        <div>
+            <label>Find pages with... <strong>all these words:</strong></label>
+            <input type="text" name="as_q" class="search-bar">
+        </div>
+        <div>
+            <label>Find pages with... <strong>this exact word or phrase:</strong></label>
+            <input type="text" name="as_epq" class="search-bar">
+        </div>
+        <div>
+            <label>Find pages with... <strong>any of these words:</strong></label>
+            <input type="text" name="as_oq" class="search-bar">
+        </div>
+        <div>
+            <label>Find pages with... <strong>none of these words:</strong></label>
+            <input type="text" name="as_eq" class="search-bar">
+        </div>
+        <div class="search-buttons">
+            <button type="submit" class="advanced-button">Advanced Search</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function showPage(pageId) {
+        document.getElementById('googleSearch').classList.add('hidden');
+        document.getElementById('imageSearch').classList.add('hidden');
+        document.getElementById('advancedSearch').classList.add('hidden');
+        document.getElementById(pageId).classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
